@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xyc.onlinecinemaproject.Mapper.CommitMapper">
+<!--    通过getCommitUser方法对评论表和用户表联表查询，并通过Map接收返回值-->
+    <select id="getCommitByMovieId" resultType="java.util.Map">
+        SELECT DISTINCT
+            `user`.*,`commit`.*
+        FROM
+            `user`,`commit`
+        WHERE
+            `user`.u_id=`commit`.u_id
+          AND
+            `commit`.m_id=#{id}
+        ORDER BY
+            m_date
+        DESC
+    </select>
+</mapper>

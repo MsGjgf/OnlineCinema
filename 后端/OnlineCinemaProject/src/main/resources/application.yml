@@ -1,0 +1,39 @@
+#端口号
+server:
+  port: 9000
+#spring配置
+spring:
+  #热部署
+  devtools:
+    restart:
+      enabled: true     #设置开启热部署
+      additional-paths: src/main/java   #重启目录
+  freemarker:
+    cache: false        #页面不加载缓存，修改即时生效
+  #配置数据源信息
+  datasource:
+    #配置数据源类型
+    type: com.zaxxer.hikari.HikariDataSource
+    #配置连接数据库的各个信息
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/online_cinema?characterEncoding=utf-8&userSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    #文件上传
+  servlet:
+    multipart:
+      enabled: true
+      #最大支持文件大小
+      max-file-size: 10000MB
+      #最大支持请求大小
+      max-request-size: 10000MB
+#配置mybatis-plus语句打印
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #设置mybatis-plus的全局配置
+  global-config:
+    db-config:
+      #设置统一的主键生成策略
+      id-type: auto
+  mapper-locations: classpath:/mapper/*.xml
